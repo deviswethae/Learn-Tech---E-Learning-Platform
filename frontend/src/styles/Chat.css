@@ -1,0 +1,328 @@
+/*
+  Chat — Navy Scholar theme (matches Courses / AddCourse / UserDashboard)
+  ------------------------------------------------------------------------
+  Ink navy        #16213E  – header / sent bubble text on gold / accents
+  Deep navy       #0F172E  – gradient partner
+  Marginalia gold #C9971E  – accent / CTA / sent bubble
+  Parchment       #F4F1E8  – page wash / message area
+  Charcoal text   #23262B  – body copy
+  ------------------------------------------------------------------------
+*/
+
+/* Chat Container */
+.chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 360px;
+  height: 520px;
+  background: #F4F1E8;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(22, 33, 62, 0.25);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Chat Header */
+.chat-header {
+  background: linear-gradient(160deg, #16213E 0%, #0F172E 100%);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-header::before {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 151, 30, 0.25);
+  right: -50px;
+  top: -70px;
+  pointer-events: none;
+}
+
+.chat-title {
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C9971E;
+  position: relative;
+  z-index: 1;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 5px;
+  position: relative;
+  z-index: 1;
+  transition: color 0.15s ease;
+}
+
+.close-button:hover {
+  color: #C9971E;
+}
+
+/* Messages Area */
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: #F4F1E8;
+}
+
+.no-messages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #8a8478;
+  font-size: 13px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Message Containers */
+.message-container {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.message-container.sent {
+  justify-content: flex-end;
+}
+
+.message-container.received {
+  justify-content: flex-start;
+}
+
+/* Message Content */
+.message-content {
+  max-width: 78%;
+}
+
+.message-sender {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #16213E;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+
+/* Message Bubble */
+.message-bubble {
+  padding: 9px 13px;
+  border-radius: 12px;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.sent .message-bubble {
+  background: #C9971E;
+  color: #16213E;
+  border-bottom-right-radius: 3px;
+}
+
+.received .message-bubble {
+  background: white;
+  color: #23262B;
+  border: 1px solid rgba(22, 33, 62, 0.08);
+  border-bottom-left-radius: 3px;
+}
+
+/* Message Text */
+.message-text {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Message Time */
+.message-time {
+  font-size: 10px;
+  text-align: right;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0.7;
+}
+
+.sent .message-time {
+  color: #16213E;
+}
+
+.received .message-time {
+  color: #8a8478;
+}
+
+.message-status {
+  margin-left: 4px;
+}
+
+.message-status.read {
+  color: #0F172E;
+  font-weight: 700;
+}
+
+/* Role Badges */
+.role-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.role-badge.admin {
+  background-color: #16213E;
+  color: #C9971E;
+}
+
+.role-badge.teacher {
+  background-color: #C9971E;
+  color: #16213E;
+}
+
+/* Input Area */
+.chat-input-container {
+  display: flex;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid rgba(22, 33, 62, 0.08);
+}
+
+.chat-input-container input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1.5px solid #F4F1E8;
+  background: #F4F1E8;
+  border-radius: 21px;
+  outline: none;
+  font-size: 14px;
+  color: #23262B;
+  transition: all 0.15s ease;
+}
+
+.chat-input-container input:focus {
+  border-color: #C9971E;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(201, 151, 30, 0.15);
+}
+
+.chat-input-container button {
+  margin-left: 10px;
+  padding: 0 20px;
+  background: #16213E;
+  color: white;
+  border: none;
+  border-radius: 21px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+.chat-input-container button:hover:not(:disabled) {
+  background: #C9971E;
+  color: #16213E;
+}
+
+.chat-input-container button:disabled {
+  background: #d8d3c5;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+/* Scrollbar */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(22, 33, 62, 0.05);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(22, 33, 62, 0.2);
+  border-radius: 3px;
+}
+
+/* Loading state styles */
+.loading-placeholder {
+  width: 100px;
+  height: 16px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.close-button.loading {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 4px;
+}
+
+.message-loading {
+  display: flex;
+  margin: 10px 0;
+  opacity: 0.6;
+}
+
+.content-loading {
+  flex: 1;
+}
+
+.text-loading {
+  height: 16px;
+  background: linear-gradient(90deg, #ece7db 25%, #dfd9c9 50%, #ece7db 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.input-loading {
+  height: 40px;
+  background: #ece7db;
+  border-radius: 20px;
+  flex: 1;
+}
+
+.button-loading {
+  width: 80px;
+  height: 40px;
+  background: #ece7db;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

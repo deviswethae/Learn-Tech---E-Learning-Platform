@@ -1,0 +1,37 @@
+.chat-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 20px;
+  background: #C9971E;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.chat-toggle-button:hover {
+  background: #a97c15;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.chat-icon {
+  font-size: 25px;
+}
+
+.chat-toggle-button:active {
+  transform: scale(0.96);
+}
