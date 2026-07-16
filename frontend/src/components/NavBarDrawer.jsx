@@ -21,6 +21,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import axios from "axios";
 import { actionUserLogout } from "../Redux/UserReducer/actionType";
 import { showToast } from "./SignUp";
+import { useSelector } from "react-redux";
 
 export function NavBarDrawer({ isOpen, onClose }) {
   
