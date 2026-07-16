@@ -23,7 +23,7 @@ import { actionUserLogout } from "../Redux/UserReducer/actionType";
 import { showToast } from "./SignUp";
 
 export function NavBarDrawer({ isOpen, onClose }) {
-  const userStore = useSelector((store) => store.UserReducer);
+  
   const drawerItems = {
     "": [
       "For Businesses",

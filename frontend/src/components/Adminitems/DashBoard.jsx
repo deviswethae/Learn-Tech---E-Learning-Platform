@@ -51,7 +51,7 @@ const DashBoard = () => {
   const [counts, setCounts] = useState({ totalUsers: 0, totalTeachers: 0, totalCourses: 0, totalVideos: 0 });
   const [categoryData, setCategoryData] = useState({ labels: [], values: [] });
   const [monthlyData, setMonthlyData] = useState({ labels: MONTH_LABELS, values: new Array(12).fill(0) });
-  const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const token = userStore?.token;

@@ -26,7 +26,6 @@ import teacher from "../asset/A.png";
 const BRAND = "#16213E";
 const BRAND2 = "#0F172E";
 const GOLD = "#C9971E";
-const BLUSH = "#F4F1E8";
 const PLUM = "#23262B";
 
 const highlights = [

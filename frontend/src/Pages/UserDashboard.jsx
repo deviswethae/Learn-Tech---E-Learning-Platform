@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import CourseComponent from "../components/UserComponents/CourseComponent";
 import CourseProgressLedger from "../components/UserComponents/CourseProgressLedger";
 
-import { Box, Container, Flex, Heading, Image, Text, Button, IconButton } from "@chakra-ui/react";
+import { Box, Container, Heading, Image, Text, Button, IconButton } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

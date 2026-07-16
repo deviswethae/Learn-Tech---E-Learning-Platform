@@ -23,7 +23,6 @@ import Navbar from "../UserComponents/UserNavbar";
 import Footer from "../../Pages/Footer";
 import Payment from "../../Pages/Payment/Payment";
 import SingleAbsolute from "./SingleAbsolute";
-import SingleList from "./SingleList";
 import convertDateFormat from "../../Redux/AdminReducer/action";
 import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 
