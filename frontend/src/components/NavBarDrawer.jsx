@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiUserCircle } from "react-icons/bi";
 import { capitalizeFirstLetter } from "../Redux/UserReducer/action";
 import { FaUserShield } from "react-icons/fa";
@@ -49,6 +49,8 @@ export function NavBarDrawer({ isOpen, onClose }) {
   const toast = useToast();
 
   const dispatch = useDispatch();
+
+  const userStore = useSelector((state) => state.UserReducer);
 
   const handleLogoutClick = () => {
     const token = userStore?.token;
