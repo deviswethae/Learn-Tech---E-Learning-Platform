@@ -10,7 +10,7 @@ const GOLD = "#C6A15B";
 const PARCHMENT = "#F8F3E7";
 const PARCHMENT_LINE = "#DCCFB0";
 
-let baseURL = "http://localhost:5000/";
+let baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com/";
 
 const CourseProgressLedger = () => {
   const userStore = useSelector((store) => store.UserReducer);

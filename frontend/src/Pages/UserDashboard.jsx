@@ -65,7 +65,7 @@ const UserDashboard = () => {
   const [featuredCourses, setFeaturedCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/courses/all")
+    fetch("https://learn-tech-e-learning-platform-backend.onrender.com/courses/all")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`courses/all responded ${res.status}`);

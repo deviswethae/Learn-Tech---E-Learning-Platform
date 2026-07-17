@@ -91,7 +91,7 @@ const Dropdown = () => {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .post("http://localhost:5000/users/logout", {}, { headers })
+      .post("https://learn-tech-e-learning-platform-backend.onrender.com/users/logout", {}, { headers })
       .then(() => {
         localStorage.setItem(
           "user",

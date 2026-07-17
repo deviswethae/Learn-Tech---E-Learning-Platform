@@ -4,7 +4,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import "../styles/Chat.css";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://learn-tech-e-learning-platform-backend.onrender.com");
 
 const ChatPage = ({ setShowChat }) => {
   const userStore = useSelector((store) => store.UserReducer);

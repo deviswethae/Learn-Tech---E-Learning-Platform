@@ -28,7 +28,7 @@ export default function Payment({ isOpen, onClose }) {
   const upiRef = useRef(null);
   const [input, setinput] = useState("");
 
-  let baseURL = "http://localhost:5000";
+  let baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com";
   const token = JSON.parse(localStorage.getItem("user"))?.token || "";
 
   const [course, setCourse] = useState({});

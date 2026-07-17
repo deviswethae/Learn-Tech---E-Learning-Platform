@@ -42,7 +42,7 @@ const TeacherDashboard = () => {
 
   useEffect(() => {
     const token = userStore?.token;
-    fetch("http://localhost:5000/stats/teacher", {
+    fetch("https://learn-tech-e-learning-platform-backend.onrender.com/stats/teacher", {
       headers: { authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())

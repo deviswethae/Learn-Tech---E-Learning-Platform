@@ -13,7 +13,7 @@ const GOLD = "#C6A15B";
 const BLUSH = "#F4F1E8";
 const PLUM = "#23262B";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com";
 
 const Quiz = () => {
   const { id: courseId } = useParams();

@@ -32,7 +32,7 @@ const GOLD = "#C9971E";
 const BLUSH = "#F4F1E8";
 const PLUM = "#23262B";  
 
-const baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com/";
+const baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com";
 
 export default function SinglePage() {
   const [res, setRes] = useState({});

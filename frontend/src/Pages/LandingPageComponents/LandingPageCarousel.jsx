@@ -109,7 +109,7 @@ const LandingPageCarousel = () => {
   };
   
   useEffect(() => {
-    const url = "https://learn-tech-e-learning-platform-backend.onrender.com//courses/all";
+    const url = "https://learn-tech-e-learning-platform-backend.onrender.com/courses/all";
     setLoading(true);
 
     fetch(url)

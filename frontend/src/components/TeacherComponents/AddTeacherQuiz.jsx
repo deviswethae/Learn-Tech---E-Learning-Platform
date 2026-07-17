@@ -14,7 +14,7 @@ const BLUSH = "#F4F1E8";
 const PLUM = "#23262B";
 const PARCHMENT_LINE = "#DCCFB0";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com";
 
 const emptyQuestion = () => ({
   question: "",

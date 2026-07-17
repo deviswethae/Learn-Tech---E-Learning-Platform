@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const INK_NAVY = "#101F38";
 const GOLD = "#C6A15B";
-const baseURL = "http://localhost:5000";
+const baseURL = "https://learn-tech-e-learning-platform-backend.onrender.com";
 
 const Certificate = ({ courseId, preloaded }) => {
   const userStore = useSelector((store) => store.UserReducer);

@@ -56,11 +56,11 @@ const DashBoard = () => {
   useEffect(() => {
     const token = userStore?.token;
 
-    const fetchStats = fetch("http://localhost:5000/stats/admin", {
+    const fetchStats = fetch("https://learn-tech-e-learning-platform-backend.onrender.com/stats/admin", {
       headers: { authorization: `Bearer ${token}` },
     }).then((r) => r.json());
 
-    const fetchCourses = fetch("http://localhost:5000/courses/all?limit=1000").then((r) => r.json());
+    const fetchCourses = fetch("https://learn-tech-e-learning-platform-backend.onrender.com/courses/all?limit=1000").then((r) => r.json());
 
     Promise.all([fetchStats, fetchCourses])
       .then(([stats, coursesRes]) => {

@@ -59,7 +59,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
     };
     axios
       .post(
-        "http://localhost:5000/users/logout",
+        "https://learn-tech-e-learning-platform-backend.onrender.com/users/logout",
         {},
         { headers }
       )
