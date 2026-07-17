@@ -98,7 +98,7 @@ cd backend
 node index.js
 ```
 
-The application will be accessible at `http://localhost:3000`.
+The application will be accessible at `https://learn-tech-e-learning-platform-6ef4felpg-devi-swethas-projects.vercel.app`.
 
 ## Contributing
 Contributions are welcome! Feel free to open an issue or submit a pull request.

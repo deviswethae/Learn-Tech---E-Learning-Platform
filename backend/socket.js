@@ -1,5 +1,5 @@
 const io = require("socket.io")(5000, { 
-  cors: { origin: "http://localhost:3000" },
+  cors: { origin: "https://learn-tech-e-learning-platform-6ef4felpg-devi-swethas-projects.vercel.app" },
 });
 
 const users = {}; // Store connected users
