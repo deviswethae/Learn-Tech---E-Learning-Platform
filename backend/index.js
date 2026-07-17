@@ -1,19 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const http = require("http");
 const { Server } = require("socket.io");
+require("dotenv").config();
+
 const { connection } = require("./db");
 const { userRouter } = require("./routes/users.routes");
 const { courseRoute } = require("./routes/courses.route");
 const { videoRoute } = require("./routes/videos.route");
-app.use(cors({
-  origin: [
-    "https://learn-tech-e-learning-platform.vercel.app",
-    "http://localhost:5173"
-  ],
-  credentials: true
-}));
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("./models/users.models");
 const { MessageModel } = require("./models/Message");
@@ -26,16 +21,23 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin:[
-       "https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app",
+    origin: [
+      "https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app",
       "https://learn-tech-e-learning-platform.vercel.app",
-    "http://localhost:5173"
-  ],credentials:true,
+      "http://localhost:5173"
+    ],
+    credentials: true,
     methods: ["GET", "POST"],
   },
 });
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://learn-tech-e-learning-platform.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
@@ -45,10 +47,9 @@ app.use("/videos", videoRoute);
 app.use('/progress', progressRoute);
 app.use('/stats', statsRoute);
 app.use('/quiz', quizRoute);
+
 // Store connected users
 const activeUsers = new Map();
-
-/// ... (previous imports remain the same)
 
 // Socket.io connection handler
 io.on("connection", (socket) => {
@@ -109,7 +110,7 @@ io.on("connection", (socket) => {
         });
 
         const savedMessage = await newMessage.save();
-        
+
         // Populate sender details
         const messageWithSender = {
           _id: savedMessage._id,
@@ -170,8 +171,6 @@ io.on("connection", (socket) => {
     }
   });
 });
-
-
 
 // Start server
 server.listen(process.env.PORT || 5000, async () => {
