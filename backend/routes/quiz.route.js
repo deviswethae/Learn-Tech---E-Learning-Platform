@@ -9,13 +9,22 @@ const { auth } = require('../middlewares/users.middleware');
 const quizRoute = express.Router();
 quizRoute.use(auth);
 
+// Helper to safely get role/userId regardless of how auth middleware attaches them
+function getAuthUser(req) {
+  const role = (req.user?.role || req.body?.role || '').toLowerCase();
+  const userId = req.user?.userId || req.user?._id || req.body?.userId;
+  return { role, userId };
+}
+
 // Teacher/Admin — create or replace the quiz for a course
-// POST /quiz/add/:courseId  body: { questions: [{question, options:[..], answer}] }
 quizRoute.post('/add/:courseId', async (req, res) => {
   try {
-    if (req.body.role !== 'admin' && req.body.role !== 'teacher') {
+    const { role, userId } = getAuthUser(req);
+
+    if (role !== 'admin' && role !== 'teacher') {
       return res.status(401).json({ error: "you don't have access to add a quiz" });
     }
+
     const { courseId } = req.params;
     const { questions } = req.body;
 
@@ -34,7 +43,7 @@ quizRoute.post('/add/:courseId', async (req, res) => {
     const course = await courseModel.findById(courseId);
     if (!course) return res.status(404).json({ message: 'course not found' });
 
-    if (req.body.role === 'teacher' && course.teacherId.toString() !== req.body.userId) {
+    if (role === 'teacher' && course.teacherId.toString() !== userId?.toString()) {
       return res.status(401).json({ error: "you don't have access to this course's quiz" });
     }
 
@@ -51,10 +60,10 @@ quizRoute.post('/add/:courseId', async (req, res) => {
 });
 
 // Teacher/Admin — view quiz WITH correct answers, for editing
-// GET /quiz/manage/:courseId
 quizRoute.get('/manage/:courseId', async (req, res) => {
   try {
-    if (req.body.role !== 'admin' && req.body.role !== 'teacher') {
+    const { role } = getAuthUser(req);
+    if (role !== 'admin' && role !== 'teacher') {
       return res.status(401).json({ error: "you don't have access to this quiz" });
     }
     const quiz = await QuizModel.findOne({ courseId: req.params.courseId });
@@ -65,10 +74,9 @@ quizRoute.get('/manage/:courseId', async (req, res) => {
 });
 
 // Student — fetch quiz WITHOUT answers, gated behind 100% video progress
-// GET /quiz/:courseId
 quizRoute.get('/:courseId', async (req, res) => {
   try {
-    const userId = req.body.userId;
+    const { userId } = getAuthUser(req);
     const { courseId } = req.params;
 
     const progress = await ProgressModel.findOne({ userId, courseId });
@@ -94,10 +102,9 @@ quizRoute.get('/:courseId', async (req, res) => {
 });
 
 // Student — submit answers, auto-score, auto-issue certificate at >=75%
-// POST /quiz/submit/:courseId  body: { answers: [{questionId, selected}] }
 quizRoute.post('/submit/:courseId', async (req, res) => {
   try {
-    const userId = req.body.userId;
+    const { userId } = getAuthUser(req);
     const { courseId } = req.params;
     const { answers } = req.body;
 
@@ -150,10 +157,9 @@ quizRoute.post('/submit/:courseId', async (req, res) => {
 });
 
 // Student — fetch existing certificate for a course
-// GET /quiz/certificate/:courseId
 quizRoute.get('/certificate/:courseId', async (req, res) => {
   try {
-    const userId = req.body.userId;
+    const { userId } = getAuthUser(req);
     const certificate = await CertificateModel.findOne({ userId, courseId: req.params.courseId });
     res.status(200).json({ certificate: certificate || null });
   } catch (err) {
@@ -161,11 +167,11 @@ quizRoute.get('/certificate/:courseId', async (req, res) => {
   }
 });
 
-// Student — all certificates earned (for a future "My Certificates" page)
-// GET /quiz/certificates/mine
+// Student — all certificates earned
 quizRoute.get('/certificates/mine', async (req, res) => {
   try {
-    const certificates = await CertificateModel.find({ userId: req.body.userId }).populate('courseId');
+    const { userId } = getAuthUser(req);
+    const certificates = await CertificateModel.find({ userId }).populate('courseId');
     res.status(200).json({ certificates });
   } catch (err) {
     res.status(400).json({ message: 'Something Went Wrong', error: err.message });
