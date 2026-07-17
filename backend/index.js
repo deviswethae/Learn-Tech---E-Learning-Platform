@@ -6,7 +6,13 @@ const { connection } = require("./db");
 const { userRouter } = require("./routes/users.routes");
 const { courseRoute } = require("./routes/courses.route");
 const { videoRoute } = require("./routes/videos.route");
-const cors = require("cors");
+app.use(cors({
+  origin: [
+    "https://learn-tech-e-learning-platform.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("./models/users.models");
@@ -20,7 +26,11 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://learn-tech-e-learning-platform.vercel.app",
+    origin:[
+       "https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app",
+      "https://learn-tech-e-learning-platform.vercel.app",
+    "http://localhost:5173"
+  ],credentials:true,
     methods: ["GET", "POST"],
   },
 });

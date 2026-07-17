@@ -1,5 +1,5 @@
 const io = require("socket.io")(5000, { 
-  cors: { origin: "https://learn-tech-e-learning-platform.vercel.app" },
+  cors: { origin: "https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app" },
 });
 
 const users = {}; // Store connected users

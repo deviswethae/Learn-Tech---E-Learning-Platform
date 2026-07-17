@@ -98,7 +98,7 @@ cd backend
 node index.js
 ```
 
-The application will be accessible at `https://learn-tech-e-learning-platform.vercel.app`.
+The application will be accessible at `https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app`.
 
 ## Contributing
 Contributions are welcome! Feel free to open an issue or submit a pull request.
