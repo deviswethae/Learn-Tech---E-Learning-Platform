@@ -25,26 +25,7 @@ import { showToast } from "./SignUp";
 
 export function NavBarDrawer({ isOpen, onClose }) {
   
-  const drawerItems = {
-    "": [
-      "For Businesses",
-      "For Universities",
-      "For Governments",
-      "Online Degrees",
-      "Find your new career",
-    ],
-    Goals: ["Take a free course", "Earn a Degree", "Earn a Certificate"],
-    Subjects: [
-      "Date Science",
-      "React",
-      "Computer Science",
-      "Information Technology",
-      "Language Learning",
-      "Health",
-      "Math and Logic",
-      "Arts and Humanites",
-    ],
-  };
+ 
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -228,34 +209,9 @@ export function NavBarDrawer({ isOpen, onClose }) {
                       AllVideos
                     </Text>
                   </Link>
-                  <Link to="/admin/quizz">
-                    <Text
-                      fontSize="0.8rem" p="1rem 0"
-                    >
-                      Quizz
-                    </Text>
-                  </Link>
-                  <Link to="/admin/certificate">
-                    <Text
-                      fontSize="0.8rem" p="1rem 0"
-                    >
-                      Certificates
-                    </Text>
-                  </Link>
-                  <Link to="/admin/statistic">
-                    <Text
-                      fontSize="0.8rem" p="1rem 0"
-                    >
-                      Statistics
-                    </Text>
-                  </Link>
-                  <Link to="/admin/setting">
-                    <Text
-                      fontSize="0.8rem" p="1rem 0"
-                    >
-                      Settings
-                    </Text>
-                  </Link>
+                
+                 
+                  
                 </Box>
               </Box>
             ) }
@@ -305,13 +261,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
                     </Text>
                   </Link>
                   
-                  <Link to="/Teacher/setting">
-                    <Text
-                      fontSize="0.8rem" p="1rem 0"
-                    >
-                      Settings
-                    </Text>
-                  </Link>
+                  
                 </Box>
               </Box>
             )}
@@ -339,32 +289,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
               </Box>
             )}
 
-            {
-              <Box>
-                <ul>
-                  {Object.entries(drawerItems).map(([category, items]) => (
-                    <li key={category}>
-                      <Box borderTop="1px solid #D7DBDD"></Box>
-                      <Heading m="15px 0" size="sm">
-                        {category}
-                      </Heading>
-                      <ul>
-                        {items.map((item) => (
-                          <Text
-                            fontSize="0.8rem"
-                            p="1rem 0"
-                            key={item}
-                            _hover={{ cursor: "pointer" }}
-                          >
-                            {item}
-                          </Text>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </Box>
-            }
+            
           </DrawerBody>
         </DrawerContent>
       </Drawer>
