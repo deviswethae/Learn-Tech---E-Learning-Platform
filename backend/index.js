@@ -20,7 +20,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://learn-tech-e-learning-platform-6ef4felpg-devi-swethas-projects.vercel.app",
+    origin: "https://learn-tech-e-learning-platform.vercel.app",
     methods: ["GET", "POST"],
   },
 });
