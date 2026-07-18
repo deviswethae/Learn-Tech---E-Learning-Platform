@@ -1,112 +1,216 @@
-# Elearning-Platform-Using-MERN
-Software Engineering Course Project
+# LearnTech — E-Learning Platform (MERN Stack)
 
-## Description
+LearnTech is a role-based e-learning platform built on the MERN stack (MongoDB, Express, React, Node.js). It supports three distinct roles — **Admin**, **Teacher**, and **Student** — each with their own dashboard, permissions, and workflows, along with course subscriptions, video-based learning, quizzes, auto-issued certificates, and real-time chat.
 
-This is an Elearning Platform built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It provides a comprehensive solution for delivering online courses, managing users, and facilitating communication between instructors and students.
+---
 
-## Features
+## Demo Credentials
 
-- User Authentication: Allows users to sign up, log in, and manage their profiles securely.
-- Course Management: Instructors can create, update, and delete courses. Students can enroll in courses and track their progress.
-- Content Delivery: Supports various multimedia formats for course materials such as videos, documents, and quizzes.
-- Discussion Forums: Enables communication between students and instructors through discussion forums for each course.
-- Responsive Design: Ensures the platform is accessible and user-friendly across devices of all sizes.
+Use these accounts to explore each role after seeding/creating them in your database.
 
-## Technologies Used
+| Role    | Email               | Password      |
+|---------|---------------------|---------------|
+| Admin   | admin@gmail.com     | admin1234     |
+| Teacher | teacher@gmail.com   | teacher1234   |
+| Student | user@gmail.com      | user1234      |
 
-- **MongoDB**: NoSQL database used for storing user data, course content, and other application data.
-- **Express.js**: Backend web application framework for building APIs and handling HTTP requests.
-- **React.js**: Frontend library for building interactive user interfaces.
-- **Node.js**: JavaScript runtime environment for executing server-side code.
-- **Redux**: State management library for managing application state in React.js.
-- **JWT Authentication**: JSON Web Tokens used for user authentication and authorization.
-- **Chakra-UI**: React components for implementing Google's Material Design.
+> ⚠️ These are demo/development credentials only. Do not use them in a production deployment — create real accounts with strong passwords before going live.
 
-### Home Page
-![Home Page](/screenshots/home_page.png)
+---
 
-### Sign Up Page
-![Sign Up Page](/screenshots/signup_page.png)
+## Roles & Permissions
 
-### Login Page
-![Login Page](/screenshots/login_page.png)
+### 🛡️ Admin
+- Create, edit, and delete courses
+- Create and manage users (students/teachers), edit or delete accounts
+- View platform-wide statistics: total students, teachers, courses, and videos
+- View category and enrollment breakdowns via charts (bar/pie)
+- Full visibility across all courses and quizzes
 
-### User Dashboard
-![User Dashboard](/screenshots/user_dashboard.png)
+### 🎓 Teacher
+- Create and manage their own courses
+- Upload videos to their courses
+- Create and edit MCQ quizzes per course
+- View per-course statistics: enrolled students, total videos, total students
+- Dashboard shows enrollment breakdown by course
 
-### Admin Dashboard
-![Admin Dashboard](/screenshots/admin_dashboard.png)
+### 👩‍🎓 Student (User)
+- Browse and subscribe to available courses
+- Watch course videos (locked until subscribed)
+- Track progress per course (videos watched / total videos)
+- Take the course quiz once all videos are completed
+- Automatically earn a certificate when scoring **75% or higher**
+- Chat with other users (admins, teachers, students) in real time
 
-### User Shown to Admin
-![User Shown to Admin](/screenshots/user_shown_to_admin.png)
+---
 
-### All Courses Shown to Admin
-![All Courses Shown to Admin](/screenshots/all_courses_admin.png)
+## Core Features
 
-### Courses Overview
-![Courses Overview](/screenshots/courses_overview.png)
+### Course & Video Management
+- Admins and teachers can create courses, each with a title, description, category, price, and thumbnail
+- Videos are uploaded per course and linked via a `videos` array on the course document
 
-### Payment Gateway
-![Payment Gateway](/screenshots/payment_gateway.png)
+### Subscription & Progress Tracking
+- Students subscribe to a course, which adds the course to their enrolled list
+- Video-watch progress is tracked server-side (not localStorage), so progress persists across devices and sessions
+- Course pages show real-time progress: videos watched, percentage complete, and lock/unlock status for the quiz
 
-### All Courses Available
-![All Courses Available](/screenshots/all_courses_available.png)
+### Quiz & Auto-Certification
+- Teachers create multiple-choice quizzes per course
+- Quiz access is gated behind 100% video completion
+- Quizzes are auto-scored on submission
+- Students scoring **75% or above** automatically receive a digital certificate with their name, course title, score, and a unique certificate ID
 
-### User Enrolled Courses
-![User Enrolled Courses](/screenshots/user_enrolled_courses.png)
+### Dashboards
+- **Admin Dashboard** — total students, teachers, courses, videos; courses-created-per-month chart; courses-by-category breakdown
+- **Teacher Dashboard** — total courses, videos, and students; enrollment-by-course chart
+- **Student Dashboard** — progress ledger for enrolled courses, featured courses carousel, full course catalog
 
-## Installation
+### Real-Time Chat
+- Built with Socket.io
+- All roles (admin, teacher, student) can chat together
+- Messages display the sender's name and role
+- Message history persists in MongoDB and loads on chat open
 
-1. Clone the repository:
+---
 
-```bash
-https://github.com/Sai-Chakradhar-Mahendrakar/Elearning-Platform-Using-MERN.git
+## Tech Stack
+
+**Frontend**
+- React
+- Redux (state management)
+- Chakra UI (component library)
+- React Router
+- Chart.js / react-chartjs-2 (dashboard charts)
+- react-slick (carousels)
+- Socket.io-client (real-time chat)
+
+**Backend**
+- Node.js + Express
+- MongoDB + Mongoose
+- Socket.io (real-time messaging)
+- JSON Web Tokens (JWT) for authentication
+- bcrypt (password hashing)
+
+---
+
+## Project Structure
+
 ```
+LEARNTECH/
+├── backend/
+│   ├── middlewares/
+│   │   └── users.middleware.js
+│   ├── models/
+│   │   ├── blacklist.js
+│   │   ├── courses.model.js
+│   │   ├── Group.js
+│   │   ├── Message.js
+│   │   ├── users.models.js
+│   │   ├── video.model.js
+│   │   ├── progress.model.js
+│   │   ├── quiz.model.js
+│   │   └── certificate.model.js
+│   ├── routes/
+│   │   ├── chatRoutes.js
+│   │   ├── courses.route.js
+│   │   ├── users.routes.js
+│   │   ├── videos.route.js
+│   │   ├── progress.route.js
+│   │   ├── stats.route.js
+│   │   └── quiz.route.js
+│   ├── db.js
+│   └── index.js
+│
+└── frontend/
+    └── src/
+        ├── components/
+        │   ├── Adminitems/       # Admin pages (dashboard, courses, users, videos, statistics)
+        │   ├── TeacherComponents/ # Teacher pages (dashboard, courses, videos, quiz builder)
+        │   ├── UserComponents/    # Student-facing components (course cards, progress, chat, quiz)
+        │   └── singlePageComps/   # Course detail page components
+        ├── Pages/
+        │   ├── LandingPageComponents/
+        │   ├── Payment/
+        │   ├── UserDashboard.jsx
+        │   └── ProfilePage.jsx
+        ├── Redux/
+        │   ├── AdminReducer/
+        │   ├── TeacherReducer/
+        │   ├── UserReducer/
+        │   └── ProductReducer/
+        ├── routes/
+        │   ├── AllRoute.jsx
+        │   ├── AdminRoute.jsx
+        │   ├── TeacherRoute.jsx
+        │   └── PrivateRoutes.jsx
+        └── utils/
 
-2. Navigate to the project directory:
 
-```bash
-cd Elearning-Platform-Using-MERN
-```
+## Getting Started
 
-3. Install dependencies for the server:
+### Prerequisites
+- Node.js (v16+)
+- MongoDB (local or Atlas)
+- npm
 
+### Backend Setup
 ```bash
 cd backend
 npm install
 ```
 
-4. Navigate to the client directory and install client dependencies:
-
-```bash
-cd frontend
-npm install
+Create a `.env` file in `backend/` with:
+```
+PORT=5000
+MONGO_URI=<your-mongodb-connection-string>
 ```
 
-5. Run Frontend:
-
+Start the backend:
 ```bash
-cd frontend
-npm start
-```
-
-6. Run Backend:
-
-```bash
-cd backend
 node index.js
 ```
 
-The application will be accessible at `https://learn-tech-e-learning-platform-aq07ono6d-devi-swethas-projects.vercel.app`.
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## Contributing
-Contributions are welcome! Feel free to open an issue or submit a pull request.
-If you'd like to contribute to the project:
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a clear description of the changes.
+The frontend runs on `http://localhost:3000` and the backend on `http://localhost:5000` by default.
+
+---
+
+## Key API Routes
+
+| Method | Endpoint                          | Description                              | Access          |
+|--------|------------------------------------|-------------------------------------------|-----------------|
+| POST   | `/users/register`                 | Register a new user                        | Public          |
+| POST   | `/users/login`                    | Log in                                     | Public          |
+| GET    | `/courses/all`                    | List all courses                           | Public          |
+| POST   | `/courses/add`                    | Create a course                            | Admin/Teacher   |
+| POST   | `/videos/add/:courseId`           | Add a video to a course                    | Admin/Teacher   |
+| POST   | `/users/addCourse/:courseId`      | Subscribe to a course                      | Authenticated   |
+| GET    | `/progress/summary`               | Get progress across all enrolled courses   | Authenticated   |
+| POST   | `/progress/markWatched`           | Mark a video as watched                    | Authenticated   |
+| POST   | `/quiz/add/:courseId`             | Create/update a course quiz                | Admin/Teacher   |
+| GET    | `/quiz/:courseId`                 | Fetch quiz (gated by course completion)    | Authenticated   |
+| POST   | `/quiz/submit/:courseId`          | Submit quiz answers, auto-issue certificate| Authenticated   |
+| GET    | `/stats/admin`                    | Platform-wide statistics                   | Admin           |
+| GET    | `/stats/teacher`                  | Teacher's course/student statistics        | Teacher         |
+
+---
+
+## Certificate Rules
+
+- A student must complete **100% of a course's videos** to unlock the quiz
+- The quiz is auto-scored on submission
+- A certificate is automatically generated and stored when the score is **≥ 75%**
+- Certificates include the student's name, course title, score, percentage, issue date, and a unique certificate ID
+
+---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project was built for educational purposes as part of a MERN stack learning platform.
