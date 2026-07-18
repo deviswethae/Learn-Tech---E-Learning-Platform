@@ -3,6 +3,8 @@
 LearnTech is a role-based e-learning platform built on the MERN stack (MongoDB, Express, React, Node.js). It supports three distinct roles — **Admin**, **Teacher**, and **Student** — each with their own dashboard, permissions, and workflows, along with course subscriptions, video-based learning, quizzes, auto-issued certificates, and real-time chat.
 
 ---
+### Live
+https://learn-tech-e-learning-platform.vercel.app/
 
 ## Demo Credentials
 
